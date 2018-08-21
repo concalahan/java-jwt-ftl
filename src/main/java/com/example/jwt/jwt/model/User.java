@@ -19,8 +19,8 @@ public class User {
 	private String username;
     
     @Column
-	private String password;
-	
+    private String password;
+    
 	public User() {
 		super();
 	}

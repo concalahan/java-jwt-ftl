@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.jwt.jwt.model.User;
 import com.example.jwt.jwt.service.DatabaseSaveService;
 
+
 @Controller
 public class LoginController {
     private static final String jwtTokenCookieName = "JWT-TOKEN";
@@ -25,7 +26,7 @@ public class LoginController {
 
     @Autowired // auto create an instance
     private DatabaseSaveService databaseSaveService;
-    
+
     public LoginController() {
         credentials.put("hellokoding", "hellokoding");
         credentials.put("hellosso", "hellosso");
@@ -50,10 +51,6 @@ public class LoginController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    //     public String login(HttpServletResponse httpServletResponse, String username, String password, String redirect, Model model){
-//    @RequestMapping(value = "login", method = RequestMethod.POST,
-//            consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE, 
-//            produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     public String login(HttpServletResponse httpServletResponse, @RequestBody User user){   	
     	String username = user.getUsername();
     	String password = user.getPassword();
@@ -82,7 +79,7 @@ public class LoginController {
       databaseSaveService.checkAuth(user.getUsername(), user.getPassword());
       return null;
     }
-    
+
     @RequestMapping("/protected-resource")
     public String protectedResource() {
         return "protected-resource";
